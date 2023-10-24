@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ch08.dto.JsonResult;
 import ch08.vo.GuestbookVo;
 
 @Controller
@@ -13,24 +14,24 @@ public class ApiController {
 	@ResponseBody
 	@RequestMapping("/text")
 	public String text() {
-		return "Text 데이타!";
+		return "Text 데이타";
 	}
 	
 	@ResponseBody
 	@RequestMapping("/html")
 	public String html() {
-		return "<h1>AJAX연습</h1><p>HTML 데이터</p>";
+		return "<h1>AJAX 연습</h1><p>HTML 데이터</p>";
 	}
-	
+
+	@ResponseBody
 	@RequestMapping("/json")
-	public GuestbookVo json() {
+	public JsonResult json() {
 		GuestbookVo vo = new GuestbookVo();
-		return vo;
+		vo.setNo(1L);
+		vo.setName("둘리");
+		vo.setContents("호이~~");
+		
+		return JsonResult.success(vo);
 	}
 	
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping("/xml") public String xml() { return "html"; }
-	 */
 }
