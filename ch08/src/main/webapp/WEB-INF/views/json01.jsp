@@ -10,16 +10,26 @@
 <title>Insert title here</title>
 <script src = "${pageContext.request.contextPath}/jquery/jquery-3.7.1.js"></script>
 <script>
-//load안에 h1, p , 이런식으로 부르면 해당 태그 안에 있는 것만 불러옴
 $(function(){
 	$('button').click(function(){
-		$('#data').load('${pageContext.request.contextPath}/api/html h1');
-	})
+		$.ajax({
+			url:'${pageContext.request.contextPath}/api/json',
+			async:true, //true : 비동기통신. ajax는 fetch와 비슷하다 
+			type:'get',
+			dataType :'application/json',
+			success:function(response){
+				console.log(response);
+			},error:function(xhr,status,error){
+				console.error(status,error);
+			}})
+			
+		});
+	});
 })
 </script>
 </head>
 <body>
-	<h1>AJAX Test : HTML Format Data</h1>
+	<h1>AJAX Test : %.ajax({}) 함수 사용하기</h1>
 	<button>데이터 가져오기</button>
 	<div id ="data"></div>
 </body>

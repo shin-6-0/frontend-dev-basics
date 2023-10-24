@@ -24,9 +24,6 @@ public class Ch08WebApplicationInitializer extends AbstractAnnotationConfigDispa
 
 	@Override
 	protected Filter[] getServletFilters() {
-		return new Filter[] {new CharacterEncodingFilter("utf-8",false)};
+		return new Filter[] {new CharacterEncodingFilter("utf-8", false)};
 	}
-	
-	
-
 }
